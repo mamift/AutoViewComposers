@@ -77,7 +77,7 @@ class AutoViewcomposersServiceProvider extends ServiceProvider {
             
             if (is_dir($dir . $file) && $not_current_dir && $not_parent_dir) {
                 // scan the subdirectory
-                $subdir = get_laravel_views($dir . $file . '/', $filter); 
+                $subdir = $this->get_laravel_views($dir . $file . '/', $filter); 
                 // $subdir_size = count($subdir);
 
                 foreach ($subdir as $subfile) {
