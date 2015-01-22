@@ -78,11 +78,11 @@ After following the steps explained above, you can now start creating view compo
 		
 		'view_extension'            => '.blade.php'
 
-If you are using a different template system, you can change the above config.php setting to something different, such as:
+	If you are using a different template system, you can change the above config.php setting to something different, such as:
 
-		'view_extension'            => '.tpl'
+			'view_extension'            => '.tpl'
 
-Obviously, you need to use a Smarty package that also supports view composers (dark/smarty-view does, some others don't).
+	Obviously, you need to use a Smarty package that also supports view composers (dark/smarty-view does, some others don't).
 
 ### Notes
 
