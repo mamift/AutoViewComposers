@@ -1,5 +1,5 @@
 # AutoViewComposers
-### For Laravel 4 
+### For Laravel 4.2
 A Laravel package for conveniently binding view composer classes to their respective views.
 
 ### How to install:
@@ -33,3 +33,4 @@ By default, views are searched for under *app\_path() . '/views/'* and view comp
 - Only supports class based view composers.
 - Views inside folders are enumerated as 'folder.viewname', so your view composer class can be either:
 	- Inside another folder with the same name, or have the class name as Folder.Viewname like **"class Admin.Index {}".**
+- Not tested in Laravel 5, probably doesn't work.
