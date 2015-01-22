@@ -1,12 +1,14 @@
 # AutoViewComposers
 ### For Laravel 4 
-A Laravle package for conveniently binding view composer classes to their respective views.
+A Laravel package for conveniently binding view composer classes to their respective views.
 
-How to install:
+### How to install:
+
+Add
 
 	"mamift/auto-viewcomposers":"dev-master"
 	
-to your composer.json. Then add the following to your config/app.php file.
+to your composer.json. Then run **"composer update"**. Then add the following to your config/app.php file:
 
 	"Mamift\AutoViewcomposers\AutoViewComposersServiceProvider"
 
@@ -14,9 +16,16 @@ After this, use the php artisan command:
 
 	php artisan config:publish mamift/auto-viewcomposers
 
-This will publish a config.php file under **app/config/packages/mamift/auto-viewcomposers**. 
+This will publish a config.php file under **app/config/packages/mamift/auto-viewcomposers**. Edit the **root_namespace** configuration setting; change the array field as follows:
+	    
+	'root_namespace' => 'AppNamespace\ViewComposers',
+	    
+The service provider class will register all view composer classes declared under this namespace.
 
-The service provider class will do all the work when the package is registered. By default, views are searched for under *app\_path() . '/views/'* and view composer classes are searched under *app\_path() . '/composers/'*. You can change that inside the config.php file.
+By default, views are searched for under *app\_path() . '/views/'* and view composer classes are searched under *app\_path() . '/composers/'*. You can change that inside the config.php file.
+
+	'views_path'          => app_path() . '/views/',
+    'view_composers_path' => app_path() . '/composers/',
 
 ### Notes
 
