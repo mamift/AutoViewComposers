@@ -6,11 +6,17 @@ How to install:
 
 	"mamift/auto-viewcomposers":"dev-master"
 	
-to your composer.json. THen add the following to your config/app.php file.
+to your composer.json. Then add the following to your config/app.php file.
 
 	"Mamift\AutoViewcomposers\AutoViewComposersServiceProvider"
 
-This Service Provider class will do all the work when the package is registered. By default, views are searched for under *app\_path() . '/views/'* and view composer classes are searched under *app\_path() . '/composers/'*. You can change that inside the config.php file.
+After this, use the php artisan command:
+
+	php artisan config:publish mamift/auto-viewcomposers
+
+This will publish a config.php file under **app/config/packages/mamift/auto-viewcomposers**. 
+
+The service provider class will do all the work when the package is registered. By default, views are searched for under *app\_path() . '/views/'* and view composer classes are searched under *app\_path() . '/composers/'*. You can change that inside the config.php file.
 
 ### Notes
 
