@@ -1,0 +1,21 @@
+{
+    "name": "mamift/auto-viewcomposers",
+    "description": "Laravel 4 package that will automatically bind view composers classes with their respectives views. Looks for view composers classes inside $app . '/composers/' by default.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "mamift",
+            "email": "mamift@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Mamift\\AutoViewcomposers": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
