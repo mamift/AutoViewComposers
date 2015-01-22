@@ -215,12 +215,8 @@ class AutoViewcomposersServiceProvider extends ServiceProvider {
                     echo 'Registering View: "' . $view . '" with ';
                     echo 'Composer: "' . $composer_class . '", <br />' . "\n";
                     
-                    $this->app->view->composer($view, $composer_class);
-                    // echo var_dump(\View::composer($view, $composer_class));
-                    // \View::composer($view, $composer_class);
-                    // \View::composer('index', 'Mamift\ViewComposers\Index');
-
-                    // echo var_dump($composer_class);
+                    // $this->app->view->composer($view, $composer_class);
+                    \View::composer($view, $composer_class);
 
                     $i = count($views);
                     break;
