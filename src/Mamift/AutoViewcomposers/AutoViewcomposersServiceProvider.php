@@ -26,13 +26,26 @@ class AutoViewcomposersServiceProvider extends ServiceProvider {
      */
     private $view_composers_path;
 
+    /**
+     * The file extension to use when searching for laravel views. Default is '.tpl'
+     * 
+     * @var string
+     */
+    private $view_extension;
+
+    /**
+     * The extension to use when searching for view composer classes. Default is '.composer.php'
+     * 
+     * @var string
+     */
+    private $view_composer_extension;
 
 	/**
 	 * Indicates if loading of the provider is deferred.
 	 *
 	 * @var bool
 	 */
-	protected $defer = false;
+	protected $defer = true;
 
     /**
      * Sets the directory path to Laravel's views. Relativ to $app_directory (i.e. wherever app/ is located).
@@ -159,9 +172,9 @@ class AutoViewcomposersServiceProvider extends ServiceProvider {
     /**
      * Registers view composers with their respective views.
      */
-    private function register_composers_to_views() 
-    {
-    	$views = $this->get_laravel_views($this->views_path, '.tpl');
+    private function register_composers_to_views($view_ext = '.blade.php', $view_composer_ext = '.composer.php') 
+    {	
+        $views = $this->get_laravel_views($this->views_path, '.tpl');
         $view_composers = $this->get_laravel_view_composers($this->view_composers_path, '.composer.php');
         
         // $view_composers = $this->get_classes_under_root_namespace();
@@ -210,8 +223,26 @@ class AutoViewcomposersServiceProvider extends ServiceProvider {
     public function boot() 
     {
         $this->package('mamift/autoViewcomposers');
-        $this->register_composers_to_views();
+
+        $view_ext = $this->get_config_value_for_key("view_extension");
+        $view_composer_ext = $this->get_config_value_for_key("view_composer_ext");
+
+        $this->register_composers_to_views($view_ext, $view_composer_ext);
         // echo var_dump($this->app['config']);
+    }
+
+    /**
+     * Returns the config value for the specified key
+     * 
+     * @param  [String] $key [The key]
+     * @return [String]      [Whatever the value is for that key]
+     */
+    public function get_config_value_for_key($key)
+    {
+        $config = $this->app['config'];
+        $config_key = 'autoViewcomposers::';
+
+        return $config->get($config_key . $key);
     }
 
 	/**
@@ -223,20 +254,20 @@ class AutoViewcomposersServiceProvider extends ServiceProvider {
 	{
         $this->package('mamift/autoViewcomposers');
 
-        $config = $this->app['config'];
-        $config_key = "autoViewcomposers::";
-
         // echo var_dump ($config);
         // the root namespace of all your view composer classes
-        $this->root_namespace = $config->get($config_key . "root_namespace");
+        $this->root_namespace = $this->get_config_value_for_key("root_namespace");
         
         // sets the location of laravel's views
-        $this->views_path = $config->get($config_key . "views_path");
+        $this->views_path = $this->get_config_value_for_key("views_path");
         // sets the location of the composers
-        $this->view_composers_path = $config->get($config_key . "view_composers_path");
+        $this->view_composers_path = $this->get_config_value_for_key("view_composers_path");
 
-        // register composeres to views
-		$this->register_composers_to_views();
+        $view_ext = $this->get_config_value_for_key("view_extension");
+        $view_composer_ext = $this->get_config_value_for_key("view_composer_ext");
+
+        // register composers to views
+		$this->register_composers_to_views($view_ext, $view_composer_ext);
 	}
 
 	/**
