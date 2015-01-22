@@ -246,7 +246,7 @@ class AutoViewcomposersServiceProvider extends ServiceProvider {
 	 */
 	public function provides()
 	{
-		return array('autoViewcomposers');
+		return array();
 	}
 
 }
