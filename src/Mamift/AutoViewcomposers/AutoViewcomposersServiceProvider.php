@@ -212,8 +212,8 @@ class AutoViewcomposersServiceProvider extends ServiceProvider {
                 // echo 'Composer: ' . $composer_class . ', <br/>';
 
                 if (strcmp($view, $comp) == 0) {
-                    echo 'Registering View: "' . $view . '" with ';
-                    echo 'Composer: "' . $composer_class . '", <br />' . "\n";
+                    // echo 'Registering View: "' . $view . '" with ';
+                    // echo 'Composer: "' . $composer_class . '", <br />' . "\n";
                     
                     // $this->app->view->composer($view, $composer_class);
                     \View::composer($view, $composer_class);
