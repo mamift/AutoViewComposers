@@ -238,7 +238,8 @@ class AutoViewcomposersServiceProvider extends ServiceProvider {
         $config = $this->app['config'];
         $config_key = 'autoViewcomposers::';
 
-        return $config->get($config_key . $key);
+        // return $config->get($config_key . $key);
+        return \Config::get($config_key . $key);
     }
 
     /**
@@ -246,6 +247,18 @@ class AutoViewcomposersServiceProvider extends ServiceProvider {
      */
     public function set_class_opts_from_config()
     {
+        $cascaded_config = app_path() . '/config/packages/mamift/auto-viewcomposers/config.php';
+
+        // use published config.php if present
+        if (file_exists($cascaded_config)) {
+            \Config::package('mamift/auto-viewcomposers', $cascaded_config, 'autoViewcomposers');
+            // echo ' using cascaded_config';
+            // var_dump($this->app['config']);
+        } else {
+            // echo 'ok not using casecaded_config';
+            // var_dump($this->app['config']);
+        }
+
         // set class variables from config
         $this->root_namespace          = $this->get_config_value_for_key("root_namespace");
         // echo '$this->root_namespace         ' . $this->root_namespace;
@@ -266,9 +279,9 @@ class AutoViewcomposersServiceProvider extends ServiceProvider {
     {
         $this->package('mamift/autoViewcomposers');
 
-        // $this->set_class_opts_from_config();
+        $this->set_class_opts_from_config();
 
-        // $this->register_composers_to_views($this->view_extension, $this->view_composer_extension);
+        $this->register_composers_to_views($this->view_extension, $this->view_composer_extension);
     }
 
     /**
@@ -281,10 +294,10 @@ class AutoViewcomposersServiceProvider extends ServiceProvider {
         $this->package('mamift/autoViewcomposers');
 
         // echo var_dump ();
-        $this->set_class_opts_from_config();
+        // $this->set_class_opts_from_config();
 
         // register composers to views
-        $this->register_composers_to_views($this->view_extension, $this->view_composer_extension);
+        // $this->register_composers_to_views($this->view_extension, $this->view_composer_extension);
     }
 
     /**
