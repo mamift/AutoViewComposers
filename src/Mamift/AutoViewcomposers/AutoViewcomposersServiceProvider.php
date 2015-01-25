@@ -248,10 +248,15 @@ class AutoViewcomposersServiceProvider extends ServiceProvider {
     {
         // set class variables from config
         $this->root_namespace          = $this->get_config_value_for_key("root_namespace");
+        // echo '$this->root_namespace         ' . $this->root_namespace;
         $this->views_path              = $this->get_config_value_for_key("views_path");
+        // echo '$this->views_path             ' . $this->views_path;
         $this->view_composers_path     = $this->get_config_value_for_key("view_composers_path");
+        // echo '$this->view_composers_path    ' . $this->view_composers_path;
         $this->view_extension          = $this->get_config_value_for_key("view_extension");
+        // echo '$this->view_extension         ' . $this->view_extension;
         $this->view_composer_extension = $this->get_config_value_for_key("view_composer_extension");
+        // echo '$this->view_composer_extension' . $this->view_composer_extension;
     }
 
     /**
@@ -259,8 +264,7 @@ class AutoViewcomposersServiceProvider extends ServiceProvider {
      */
     public function boot() 
     {
-        // $this->package('mamift/autoViewcomposers');
-        // $this->package('vendor/package');
+        $this->package('mamift/autoViewcomposers');
 
         // $this->set_class_opts_from_config();
 
