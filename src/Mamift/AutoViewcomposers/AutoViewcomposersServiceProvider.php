@@ -27,7 +27,7 @@ class AutoViewcomposersServiceProvider extends ServiceProvider {
     private $view_composers_path;
 
     /**
-     * The file extension to use when searching for laravel views. Default is '.tpl'
+     * The file extension to use when searching for laravel views. Default is '.blade.php'
      * 
      * @var string
      */
@@ -277,6 +277,7 @@ class AutoViewcomposersServiceProvider extends ServiceProvider {
      */
     public function boot() 
     {
+        // this is here inside boot() otherwise the app must then be restarted for auto-viewcomposers to register a new composer or view.
         $this->package('mamift/autoViewcomposers');
 
         $this->set_class_opts_from_config();
